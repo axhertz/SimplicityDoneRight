@@ -1,0 +1,4 @@
+/home/axhe/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/193.6494.38/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /home/axhe/Desktop/CIDR/CodeRepo/FocusedSampling/onceAgain/FocSampl
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/axhe/Desktop/CIDR/CodeRepo/FocusedSampling/onceAgain/FocSampl/cmake-build-release

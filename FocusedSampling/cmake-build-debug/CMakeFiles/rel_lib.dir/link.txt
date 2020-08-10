@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/librel_lib.a  CMakeFiles/rel_lib.dir/RelationCol.cc.o CMakeFiles/rel_lib.dir/relspec.cc.o CMakeFiles/rel_lib.dir/infra/cmeasure.c.o CMakeFiles/rel_lib.dir/infra/GenRandIntVec.cc.o
+/usr/bin/ranlib lib/librel_lib.a
