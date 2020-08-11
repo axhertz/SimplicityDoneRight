@@ -1,4 +1,0 @@
-/home/axhe/Desktop/CIDR/CodeRepo/FocusedSampling/onceAgain/FocSampl/cmake-build-release/CMakeFiles/rebuild_cache.dir
-/home/axhe/Desktop/CIDR/CodeRepo/FocusedSampling/onceAgain/FocSampl/cmake-build-release/CMakeFiles/rel_lib.dir
-/home/axhe/Desktop/CIDR/CodeRepo/FocusedSampling/onceAgain/FocSampl/cmake-build-release/CMakeFiles/edit_cache.dir
-/home/axhe/Desktop/CIDR/CodeRepo/FocusedSampling/onceAgain/FocSampl/cmake-build-release/CMakeFiles/main.dir

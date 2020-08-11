@@ -45,7 +45,7 @@ uint_vt getRandVec(rng32_t aRng, uint sampleSize){
 std::string get_current_dir() {
     char buff[FILENAME_MAX]; //create string buffer to hold path
     GetCurrentDir( buff, FILENAME_MAX );
-    string current_working_dir(buff);
+    std::string current_working_dir(buff);
     return current_working_dir;
 }
 
@@ -131,7 +131,7 @@ testSampleSizes(rng32_t& aRng, std::string tableName, const std::string& queryNa
 
 static void show_usage(const std::string& name)
 {
-    std::cout << "Usage: " << name << " <option(s)> SOURCES"
+    std::cout << "Usage: " << name << " <option(s)> SOURCES "
               << "Options:\n"
               << "\t-help, -h,\t show this help message\n"
               << "\t-n_preds,\t specify number of predicates [3|5|7]\n"
@@ -212,8 +212,6 @@ int main(int argc, char* argv[])
     }
     rng32_t lRng;
     testSampleSizes(lRng, "forest_data_normalised.csv", query_file+enum_pred, method, reuse_tids);
-    //testSampleSizes(lRng, "forest_data_normalised.csv", "query_frt_qu7.txt",
-    //       "traditional", false);
 
     return 0;
 }

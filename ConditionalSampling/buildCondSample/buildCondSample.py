@@ -126,18 +126,19 @@ if __name__ == "__main__":
                     const="random", default="best",
                     help='choose which predicate uses the index (default: predicate with smalles selectivity)')
 
-	parser.add_argument('--output',  type=str,
-    		       help='specify name of output file', default ="cond_sample.pkl")
 
 	args = parser.parse_args()
 	n_preds = 5
 
 	if args.n_preds not in [3,5,7]:
-		print("invalid number of predicates, --pred_n [3|5|7]. Using default 5.")
-	else:
-		n_preds = args.n_preds
+		print("invalid number of predicates, --pred_n [3|5|7]")
+		exit()
 
-	print("sample will be saved as ", args.output)
+	if os.path.isfile("cond_sample_"+str(args.n_preds)+"q.pkl"):
+		print("cond_sample_"+str(args.n_preds)+"q.pkl already exists")
+		exit()
+
+	print("sample will be saved as ", "cond_sample_"+str(args.n_preds)+"q.pkl")
 
 	mod = args.enumerate
 	
@@ -173,8 +174,6 @@ if __name__ == "__main__":
 	sample_parts = p.map(_buildConditionalSample_, param_list)
 	for cond_sample in sample_parts:
 		bv_and_sel_all+=cond_sample
-	print(bv_and_sel_all[7])
-
 
 
 	with open(args.output, "wb") as fb:

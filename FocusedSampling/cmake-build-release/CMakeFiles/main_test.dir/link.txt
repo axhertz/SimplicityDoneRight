@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/main_test.dir/main_test.cc.o  -o bin/main_test lib/librel_lib.a 

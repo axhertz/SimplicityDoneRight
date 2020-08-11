@@ -28,7 +28,7 @@ list( APPEND INCS RelationCol.hh relspec.hh  infra/cmeasure.h infra/GenRandIntVe
 
 add_library(rel_lib STATIC ${SRCS} ${INCS})
 
-add_executable(main main.cc ${INCS})
+add_executable(focusedSampling main.cc ${INCS})
 
-target_link_libraries(main LINK_PUBLIC rel_lib)
+target_link_libraries(focusedSampling LINK_PUBLIC rel_lib)
 

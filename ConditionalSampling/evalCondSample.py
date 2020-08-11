@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
 	parser = argparse.ArgumentParser(description='Evaluate conditional sampling on forest data.')
 
-	parser.add_argument("--sample", help="path to output of buildCondSample.py", type=str, default="cond_sample.pkl" )
+	parser.add_argument("--sample", help="path to output of buildCondSample.py", type=str, default="buildCondSample/cond_sample_5q.pkl" )
 	parser.add_argument("--size", help="resize sample [1,...,10000], default is 5000", type=int)
 	args = parser.parse_args()
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 	sampleSize = 5000
 	if not args.size:
 		print("no sample size specified, using default 5000")
-	elif args.size > 0 and args.size <= 10000:
+	elif args.size > 0 and args.size <= 5000:
 		sampleSize = args.size
 	else:
 		print("sample size out of range, using default 5000")
@@ -63,6 +63,7 @@ if __name__ == "__main__":
 		single_sel = bv_and_sel_all[num][2]
 		true_card = bv_and_sel_all[num][3]
 
+
 		if np.count_nonzero(bv_random) == 0: # 0-Tuple-Situation 
 			omega =- math.log(0.0001)*(TABLE_CARD)/sampleSize
 			q_error_traditional = getQuerror(omega**0.5, true_card)
@@ -71,12 +72,11 @@ if __name__ == "__main__":
 			q_error_traditional = getQuerror(trad_est*TABLE_CARD, true_card)
 
 		if np.count_nonzero(bv_conditional) == 0: # 0-Tuple-Situation 
-			omega =- math.log(0.0001)*(TABLE_CARD*single_sel)/sampleSize
+			omega =- math.log(0.0001)*(TABLE_CARD*single_sel)/min(sampleSize,len(bv_conditional))
 			q_error_conditional = getQuerror(omega**0.5, true_card)
 		else:# k > 0
-			cond_est = np.count_nonzero(bv_conditional)/sampleSize*single_sel
+			cond_est = np.count_nonzero(bv_conditional)/min(sampleSize,len(bv_conditional))*single_sel
 			q_error_conditional = getQuerror(cond_est*TABLE_CARD, true_card)
 
 
-		print("q-error query ", num,"\t\t conditional sampling ", q_error_conditional,\
-			"\t\t traditional sampling ", q_error_traditional)
+		print('q-error query {0:<10}  conditional sampling  {1:<10} traditional sampling {2:<10}'.format(num,round(q_error_conditional,2) , round(q_error_traditional,2))) 
