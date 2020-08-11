@@ -21,13 +21,9 @@ extern "C" {
 
 // #define __MACOS
 
-#ifdef __MACOS
-const std::string gDirRel   = "./out/rel/";
-const std::string gDirQuery = "./out/query/";
-#else
-const std::string gDirRel   = "../../data/table/";
-const std::string gDirQuery = "../../data/query/";
-#endif
+
+const std::string gDirRel   = "../data/table/";
+const std::string gDirQuery = "../data/query/";
 
 
 using namespace std;
@@ -65,8 +61,8 @@ testSampleSizes(rng32_t& aRng, std::string tableName, const std::string& queryNa
         const std::string& samplingMethod, bool reuseTIDs){
     std::ofstream resultFile;
     std::cout<< "method: "<<samplingMethod << "\t reuse TIDs: "<< reuseTIDs << "\t query: " << queryName
-    <<"\t result file: " << "../../result/result.txt" <<std::endl;
-    resultFile.open("../../result/result.txt");
+    <<"\t result file: " << "../result/result.txt" <<std::endl;
+    resultFile.open("../result/result.txt");
     RelationCol R;
     std::string lFilenameRel = gDirRel + tableName;
     std::string lFilenameQuery = gDirQuery + queryName;
