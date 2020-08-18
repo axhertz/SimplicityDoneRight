@@ -8,4 +8,4 @@ join name AS n on (n.gender = 'm' AND n.name LIKE '%Tim%' AND n.id = ci.person_i
 join
  (select movie_id from movie_info AS mi 
 join info_type AS it1 on (it1.info = 'budget' AND it1.id = mi.info_type_id)) as t_mi 
-on(t_mi.movie_id = ci.movie_id)
+on(t_mi.movie_id = ci.movie_id);

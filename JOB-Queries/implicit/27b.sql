@@ -1,6 +1,4 @@
-SELECT MIN(cn.name) AS producing_company,
-       MIN(lt.link) AS link_type,
-       MIN(t.title) AS complete_western_sequel
+SELECT COUNT(*) 
 FROM complete_cast AS cc,
      comp_cast_type AS cct1,
      comp_cast_type AS cct2,

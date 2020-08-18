@@ -9,4 +9,4 @@ JOIN person_info AS pi
 on(pi.person_id = ci.person_id and pi.note ='Volker Boehm')
 join info_type AS it on (it.info ='mini biography' AND it.id = pi.info_type_id)
 JOIN aka_name AS an  
-on(an.person_id = pi.person_id and an.name LIKE '%a%')
+on(an.person_id = pi.person_id and an.name LIKE '%a%');

@@ -1,4 +1,4 @@
-SELECT MIN(n.name) AS member_in_charnamed_movie
+SELECT COUNT(*) 
 FROM cast_info AS ci,
      company_name AS cn,
      keyword AS k,

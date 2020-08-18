@@ -9,4 +9,4 @@ JOIN cast_info AS ci
 on(ci.movie_id = mc.movie_id)
 join name AS n on (n.id = ci.person_id)
 JOIN aka_name AS an  
-on(an.person_id = ci.person_id)
+on(an.person_id = ci.person_id);

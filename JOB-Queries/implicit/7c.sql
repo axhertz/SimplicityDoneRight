@@ -1,5 +1,4 @@
-SELECT MIN(n.name) AS cast_member_name,
-       MIN(pi.info) AS cast_member_info
+SELECT COUNT(*) 
 FROM aka_name AS an,
      cast_info AS ci,
      info_type AS it,

@@ -9,4 +9,4 @@ join info_type AS it2 on (it2.info = 'rating' AND it2.id = mi_idx.info_type_id a
 on(t_mi_idx.movie_id = mk.movie_id)
 JOIN movie_info AS mi  
 on(mi.movie_id = t_mi_idx.movie_id and mi.info IN ('Sweden', 'Norway', 'Germany', 'Denmark', 'Swedish', 'Danish', 'Norwegian', 'German', 'USA', 'American'))
-join info_type AS it1 on (it1.info = 'countries' AND it1.id = mi.info_type_id)
+join info_type AS it1 on (it1.info = 'countries' AND it1.id = mi.info_type_id);

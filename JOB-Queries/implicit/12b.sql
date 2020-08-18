@@ -1,5 +1,4 @@
-SELECT MIN(mi.info) AS budget,
-       MIN(t.title) AS unsuccsessful_movie
+SELECT COUNT(*) 
 FROM company_name AS cn,
      company_type AS ct,
      info_type AS it1,

@@ -8,4 +8,4 @@ JOIN aka_name AS an
 on(an.person_id = ci.person_id)
 JOIN movie_companies AS mc  
 on(mc.movie_id = ci.movie_id)
-join company_name AS cn on (cn.country_code ='[us]' AND mc.company_id = cn.id)
+join company_name AS cn on (cn.country_code ='[us]' AND mc.company_id = cn.id);

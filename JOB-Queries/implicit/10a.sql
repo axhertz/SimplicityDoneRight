@@ -1,5 +1,4 @@
-SELECT MIN(chn.name) AS uncredited_voiced_character,
-       MIN(t.title) AS russian_movie
+SELECT COUNT(*) 
 FROM char_name AS chn,
      cast_info AS ci,
      company_name AS cn,

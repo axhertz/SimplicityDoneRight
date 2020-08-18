@@ -7,4 +7,4 @@ JOIN aka_name AS an1
 on(an1.person_id = ci.person_id)
 JOIN movie_companies AS mc  
 on(mc.movie_id = ci.movie_id and mc.note LIKE '%(Japan)%' AND mc.note NOT LIKE '%(USA)%')
-join company_name AS cn on (cn.country_code ='[jp]' AND mc.company_id = cn.id)
+join company_name AS cn on (cn.country_code ='[jp]' AND mc.company_id = cn.id);

@@ -1,6 +1,4 @@
-SELECT MIN(chn.name) AS voiced_char,
-       MIN(n.name) AS voicing_actress,
-       MIN(t.title) AS voiced_animation
+SELECT COUNT(*) 
 FROM aka_name AS an,
      complete_cast AS cc,
      comp_cast_type AS cct1,

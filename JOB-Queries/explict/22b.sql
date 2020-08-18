@@ -13,4 +13,4 @@ join company_type AS ct on (ct.id = mc.company_type_id)
 join company_name AS cn on (cn.country_code != '[us]' AND cn.id = mc.company_id)
 JOIN movie_info AS mi  
 on(mi.movie_id = mc.movie_id and mi.info IN ('Germany', 'German', 'USA', 'American'))
-join info_type AS it1 on (it1.info = 'countries' AND it1.id = mi.info_type_id)
+join info_type AS it1 on (it1.info = 'countries' AND it1.id = mi.info_type_id);

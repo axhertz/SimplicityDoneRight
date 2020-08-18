@@ -1,6 +1,4 @@
-SELECT MIN(k.keyword) AS movie_keyword,
-       MIN(n.name) AS actor_name,
-       MIN(t.title) AS hero_movie
+SELECT COUNT(*) 
 FROM cast_info AS ci,
      keyword AS k,
      movie_keyword AS mk,

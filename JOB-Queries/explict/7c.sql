@@ -9,4 +9,4 @@ JOIN aka_name AS an
 on(an.person_id = ci.person_id and an.name IS NOT NULL AND (an.name LIKE '%a%' OR an.name LIKE 'A%'))
 JOIN person_info AS pi  
 on(pi.person_id = an.person_id and pi.note IS NOT NULL)
-join info_type AS it on (it.info ='mini biography' AND it.id = pi.info_type_id)
+join info_type AS it on (it.info ='mini biography' AND it.id = pi.info_type_id);

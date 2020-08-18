@@ -1,6 +1,4 @@
-SELECT MIN(cn.name) AS company_name,
-       MIN(lt.link) AS link_type,
-       MIN(t.title) AS western_follow_up
+SELECT COUNT(*) 
 FROM company_name AS cn,
      company_type AS ct,
      keyword AS k,

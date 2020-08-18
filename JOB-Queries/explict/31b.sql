@@ -14,4 +14,4 @@ on(ci.movie_id = mc.movie_id and ci.note IN ('(writer)', '(head writer)', '(writ
 join name AS n on (n.gender = 'm' AND n.id = ci.person_id)
 JOIN movie_info AS mi  
 on(mi.movie_id = ci.movie_id and mi.info IN ('Horror', 'Thriller'))
-join info_type AS it1 on (it1.info = 'genres' AND it1.id = mi.info_type_id)
+join info_type AS it1 on (it1.info = 'genres' AND it1.id = mi.info_type_id);

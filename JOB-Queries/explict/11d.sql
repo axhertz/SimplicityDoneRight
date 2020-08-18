@@ -8,4 +8,4 @@ join company_type AS ct on (ct.kind != 'production companies' AND ct.kind IS NOT
 join company_name AS cn on (cn.country_code !='[pl]' AND mc.company_id = cn.id)
 JOIN movie_link AS ml  
 on(ml.movie_id = mc.movie_id)
-join link_type AS lt on (lt.id = ml.link_type_id)
+join link_type AS lt on (lt.id = ml.link_type_id);

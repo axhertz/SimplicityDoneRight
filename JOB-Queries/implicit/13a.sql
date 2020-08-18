@@ -1,6 +1,4 @@
-SELECT MIN(mi.info) AS release_date,
-       MIN(miidx.info) AS rating,
-       MIN(t.title) AS german_movie
+SELECT COUNT(*) 
 FROM company_name AS cn,
      company_type AS ct,
      info_type AS it,

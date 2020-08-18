@@ -9,4 +9,4 @@ join company_name AS cn on (cn.country_code ='[us]' AND cn.id = mc.company_id)
 join
  (select movie_id from movie_info AS mi 
 join info_type AS it1 on (it1.info ='budget' AND mi.info_type_id = it1.id)) as t_mi 
-on(t_mi.movie_id = mc.movie_id)
+on(t_mi.movie_id = mc.movie_id);

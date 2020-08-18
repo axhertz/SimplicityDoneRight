@@ -7,5 +7,5 @@ on(mc.movie_id = mk.movie_id and mc.note IS NOT NULL)
 join company_type AS ct on (ct.kind != 'production companies' AND ct.kind IS NOT NULL AND mc.company_type_id = ct.id)
 join company_name AS cn on (cn.country_code !='[pl]' AND (cn.name LIKE '20th Century Fox%' OR cn.name LIKE 'Twentieth Century Fox%') AND mc.company_id = cn.id)
 JOIN movie_link AS ml  
-on(ml.linked_movie_id = mc.movie_id)
-join link_type AS lt on (lt.id = ml.link_type_id)
+on(ml.movie_id = mc.movie_id)
+join link_type AS lt on (lt.id = ml.link_type_id);

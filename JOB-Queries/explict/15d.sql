@@ -10,4 +10,4 @@ join company_type AS ct on (ct.id = mc.company_type_id)
 join company_name AS cn on (cn.country_code = '[us]' AND cn.id = mc.company_id)
 JOIN movie_keyword AS mk  
 on(mk.movie_id = mc.movie_id)
-join keyword AS k on (k.id = mk.keyword_id)
+join keyword AS k on (k.id = mk.keyword_id);

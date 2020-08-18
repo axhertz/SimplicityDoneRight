@@ -1,5 +1,4 @@
-SELECT MIN(n.name) AS cast_member,
-       MIN(t.title) AS complete_dynamic_hero_movie
+SELECT COUNT(*) 
 FROM complete_cast AS cc,
      comp_cast_type AS cct1,
      comp_cast_type AS cct2,

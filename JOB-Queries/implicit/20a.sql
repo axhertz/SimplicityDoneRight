@@ -1,4 +1,4 @@
-SELECT MIN(t.title) AS complete_downey_ironman_movie
+SELECT COUNT(*) 
 FROM complete_cast AS cc,
      comp_cast_type AS cct1,
      comp_cast_type AS cct2,

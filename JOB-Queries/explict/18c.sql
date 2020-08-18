@@ -8,4 +8,4 @@ join info_type AS it2 on (it2.info = 'votes' AND it2.id = mi_idx.info_type_id)) 
 on(t_mi_idx.movie_id = mi.movie_id)
 JOIN cast_info AS ci  
 on(ci.movie_id = t_mi_idx.movie_id and ci.note IN ('(writer)', '(head writer)','(written by)', '(story)', '(story editor)'))
-join name AS n on (n.gender = 'm' AND n.id = ci.person_id)
+join name AS n on (n.gender = 'm' AND n.id = ci.person_id);

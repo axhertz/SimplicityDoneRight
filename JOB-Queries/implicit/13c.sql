@@ -1,6 +1,4 @@
-SELECT MIN(cn.name) AS producing_company,
-       MIN(miidx.info) AS rating,
-       MIN(t.title) AS movie_about_winning
+SELECT COUNT(*) 
 FROM company_name AS cn,
      company_type AS ct,
      info_type AS it,

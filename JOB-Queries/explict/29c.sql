@@ -16,7 +16,7 @@ on(an.person_id = t_ci.person_id)
 join
  (select person_id from person_info AS pi 
 join info_type AS it3 on (it3.info = 'trivia' AND it3.id = pi.info_type_id)) as t_pi 
-on(t_pi.person_id = t_ci.person_id)
+on(t_pi.person_id = an.person_id)
 join
  (select movie_id from complete_cast AS cc 
 join comp_cast_type AS cct2 on (cct2.kind ='complete+verified' AND cct2.id = cc.status_id)
@@ -25,4 +25,4 @@ on(t_cc.movie_id = t_ci.movie_id)
 join
  (select movie_id from movie_info AS mi 
 join info_type AS it on (it.info = 'release dates' AND it.id = mi.info_type_id and mi.info IS NOT NULL AND (mi.info LIKE 'Japan:%200%' OR mi.info LIKE 'USA:%200%'))) as t_mi 
-on(t_mi.movie_id = t_cc.movie_id)
+on(t_mi.movie_id = t_cc.movie_id);

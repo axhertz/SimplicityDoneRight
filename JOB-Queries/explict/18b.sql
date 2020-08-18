@@ -7,4 +7,4 @@ on(mi_idx.movie_id = mi.movie_id and mi_idx.info > '8.0')
 join info_type AS it2 on (it2.info = 'rating' AND it2.id = mi_idx.info_type_id)
 JOIN cast_info AS ci  
 on(ci.movie_id = mi_idx.movie_id and ci.note IN ('(writer)',  '(head writer)',  '(written by)', '(story)', '(story editor)'))
-join name AS n on (n.gender IS NOT NULL AND n.gender = 'f' AND n.id = ci.person_id)
+join name AS n on (n.gender IS NOT NULL AND n.gender = 'f' AND n.id = ci.person_id);

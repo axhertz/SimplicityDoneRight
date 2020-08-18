@@ -1,4 +1,4 @@
-SELECT MIN(t.title) AS movie_title
+SELECT COUNT(*) 
 FROM keyword AS k,
      movie_info AS mi,
      movie_keyword AS mk,

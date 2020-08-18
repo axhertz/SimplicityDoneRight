@@ -1,5 +1,4 @@
-SELECT MIN(chn.name) AS character,
-       MIN(t.title) AS movie_with_american_producer
+SELECT COUNT(*) 
 FROM char_name AS chn,
      cast_info AS ci,
      company_name AS cn,

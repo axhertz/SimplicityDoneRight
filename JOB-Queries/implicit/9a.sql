@@ -1,6 +1,4 @@
-SELECT MIN(an.name) AS alternative_name,
-       MIN(chn.name) AS character_name,
-       MIN(t.title) AS movie
+SELECT COUNT(*) 
 FROM aka_name AS an,
      char_name AS chn,
      cast_info AS ci,

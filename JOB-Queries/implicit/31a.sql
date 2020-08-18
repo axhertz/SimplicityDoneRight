@@ -1,7 +1,4 @@
-SELECT MIN(mi.info) AS movie_budget,
-       MIN(mi_idx.info) AS movie_votes,
-       MIN(n.name) AS writer,
-       MIN(t.title) AS violent_liongate_movie
+SELECT COUNT(*) 
 FROM cast_info AS ci,
      company_name AS cn,
      info_type AS it1,

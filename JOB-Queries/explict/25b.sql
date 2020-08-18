@@ -12,4 +12,4 @@ join name AS n on (n.gender = 'm' AND n.id = ci.person_id and ci.note IN ('(writ
 on(t_ci.movie_id = t_mk.movie_id)
 JOIN movie_info AS mi  
 on(mi.movie_id = t_ci.movie_id and mi.info = 'Horror')
-join info_type AS it1 on (it1.info = 'genres' AND it1.id = mi.info_type_id)
+join info_type AS it1 on (it1.info = 'genres' AND it1.id = mi.info_type_id);
