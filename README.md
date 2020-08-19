@@ -1,5 +1,7 @@
 # SimplicityDoneRight
 
+This is the code base of the evalaution shown in the work "Simplicity Done Right for Join Ordering".
+
 ## Modules 
 
 1. **Focused Sampling:** The code mimics an in-memory column store and exploits specific access patterns to boost sampling speed. 
