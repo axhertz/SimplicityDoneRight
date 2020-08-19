@@ -2,9 +2,9 @@
 
 ## Modules 
 
-1. Focused Sampling: The code mimics an in-memory column store and exploits specific access patterns to boost sampling speed. 
-2. Conditional Sampling: The code simulates an index over arbitrary filter predicates. The approach exploits index or index like structures to boost estimation accuracy. 
-3. JOB-Queries: Queries of the Join-Order-Benchmark with implicit where clauses and transformed into explicit join orders according to our enumeration scheme. 
+1. **Focused Sampling:** The code mimics an in-memory column store and exploits specific access patterns to boost sampling speed. 
+2. **Conditional Sampling:** The code simulates an index over arbitrary filter predicates. The approach exploits index or index like structures to boost estimation accuracy. 
+3. **JOB-Queries:** Queries of the Join-Order-Benchmark with implicit where clauses and transformed into explicit join orders according to our enumeration scheme. 
 
 ## Quick Start
 
