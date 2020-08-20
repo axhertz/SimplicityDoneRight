@@ -1,6 +1,6 @@
 # SimplicityDoneRight
 
-This is the code base of the evalaution shown in the work "Simplicity Done Right for Join Ordering".
+This is the code base of the evaluation shown in the work "Simplicity Done Right for Join Ordering".
 
 ## Modules 
 
@@ -33,7 +33,7 @@ To build new conditional samples:
 
 To compare the implicit to the explicit JOB Queries you may need to [install Postgres](https://www.postgresql.org/)  first and [load the IMDB data](https://github.com/gregrahn/join-order-benchmark).
 
-Please use the following sql hints if running the explict queries on Postgres:
+Please use the following sql hints if running the explicit queries on Postgres:
 
 `set collapse_join limit = 1;`
 
