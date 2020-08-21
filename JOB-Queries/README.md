@@ -1,6 +1,6 @@
 ### Quick Start
 
-The folder "implicit" contains all JOB queries with implict where clauses
+The folder "implicit" contains all JOB queries with implict where clauses.
 
 The folder "explict" contains the trainsformed JOB queries according to the scheme detailed in the paper. 
 
