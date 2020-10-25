@@ -6,8 +6,8 @@ join title AS t on (t.production_year BETWEEN 2000 AND 2010 AND t.id = ci.movie_
 join char_name AS chn on (chn.id = ci.person_role_id)
 join
  (select movie_id from complete_cast AS cc 
-join comp_cast_type AS cct1 on (cct1.kind ='cast' AND cct1.id = cc.subject_id)
-join comp_cast_type AS cct2 on (cct2.kind ='complete+verified' AND cct2.id = cc.status_id)) as t_cc 
+join comp_cast_type AS cct2 on (cct2.kind ='complete+verified' AND cct2.id = cc.status_id)
+join comp_cast_type AS cct1 on (cct1.kind ='cast' AND cct1.id = cc.subject_id)) as t_cc 
 on(t_cc.movie_id = ci.movie_id)
 JOIN aka_name AS an  
 on(an.person_id = ci.person_id)

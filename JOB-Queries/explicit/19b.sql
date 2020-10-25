@@ -6,10 +6,9 @@ join name AS n on (n.gender ='f' AND n.name LIKE '%Angel%' AND n.id = ci.person_
 join char_name AS chn on (chn.id = ci.person_role_id)
 JOIN aka_name AS an  
 on(an.person_id = ci.person_id)
-join
- (select movie_id from movie_companies AS mc 
-join company_name AS cn on (cn.country_code ='[us]' AND cn.id = mc.company_id and mc.note LIKE '%(200%)%' AND (mc.note LIKE '%(USA)%' OR mc.note LIKE '%(worldwide)%'))) as t_mc 
-on(t_mc.movie_id = ci.movie_id)
+JOIN movie_companies AS mc  
+on(mc.movie_id = ci.movie_id and mc.note LIKE '%(200%)%' AND (mc.note LIKE '%(USA)%' OR mc.note LIKE '%(worldwide)%'))
+join company_name AS cn on (cn.country_code ='[us]' AND cn.id = mc.company_id)
 JOIN movie_info AS mi  
-on(mi.movie_id = t_mc.movie_id and mi.info IS NOT NULL AND (mi.info LIKE 'Japan:%2007%' OR mi.info LIKE 'USA:%2008%'))
+on(mi.movie_id = mc.movie_id and mi.info IS NOT NULL AND (mi.info LIKE 'Japan:%2007%' OR mi.info LIKE 'USA:%2008%'))
 join info_type AS it on (it.info = 'release dates' AND it.id = mi.info_type_id);
