@@ -37,5 +37,3 @@ Please use the following sql hints if running the explicit queries on Postgres:
 `set collapse_join limit = 1;`
 
 `set enable_nestloop to false;`
-
-`set jit to off;`
