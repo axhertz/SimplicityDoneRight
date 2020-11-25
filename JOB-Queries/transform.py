@@ -159,7 +159,7 @@ for query_file in query_list:
 
 
 	#################### Start Statistic requests  #########################
-	connection = psycopg2.connect(host=host, database=db, user=usr, password=pwd, port="5435")
+	connection = psycopg2.connect(host=host, database=db, user=usr, password=pwd)
 	
 	rel_dict = {}
 	#get filter selectivity estimates
