@@ -75,18 +75,11 @@ usr = input("user: ")
 pwd = input("password: ")
 
 
-if not os.path.isdir(impl_dir):
-	print("is dir")
-print(out_dir, impl_dir)
-#exit()
-
-
 query_list = glob.glob(impl_dir+"*.sql")
 query_list = [q.split("/")[-1] for q in query_list]
 
 
 for query_file in query_list:
-	print("rewriting", query_file)
 	with open(impl_dir+query_file, "r") as file:
 		data = file.read()
 
@@ -166,7 +159,7 @@ for query_file in query_list:
 
 
 	#################### Start Statistic requests  #########################
-	connection = psycopg2.connect(host=host, database=db, user=usr, password=pwd)
+	connection = psycopg2.connect(host=host, database=db, user=usr, password=pwd, port="5435")
 	
 	rel_dict = {}
 	#get filter selectivity estimates
@@ -248,6 +241,7 @@ for query_file in query_list:
 		rel_dict[key] = math.ceil(intermediate)
 
 	# apply pk-fk join with title only to smallest n:m candidate
+	use_ci = False
 	if "t" in rel_dict.keys():
 		t_rel = None
 		min_card = 10**100
@@ -257,7 +251,13 @@ for query_file in query_list:
 			if cur_card < min_card:
 				min_card = cur_card
 				t_rel = key
-		rel_dict[t_rel] = min_card
+		for pk_id_tar in person_id_list:
+			if pk_id_tar in sub_join_rel_dict.keys():
+				if rel_dict[pk_id_tar] <= min_card:
+					use_ci = True
+					break
+		if not use_ci:
+			rel_dict[t_rel] = min_card
 
 	if "ci" in sub_join_rel_dict.keys():
 		fk_fk_target += list(set(person_id_list).intersection(set(sub_join_rel_dict["ci"])))
@@ -278,6 +278,7 @@ for query_file in query_list:
 		if rel_dict[r] < min_card:
 			best_rel = r
 			min_card = rel_dict[r]
+	if use_ci: best_rel = "ci"
 	hit_t = False
 	hit_t1 = False
 	hit_t2 = False
@@ -331,7 +332,9 @@ for query_file in query_list:
 			is_ml = False
 			if visited_candidates[position] != 0 :
 				continue
-			if rel in person_id_list and "ci" not in visited_candidates_n:
+			if len(set(person_id_list).intersection(set(visited_candidates_n))) and rel not in person_id_list and rel != "ci" and "ci" not in visited_candidates_n:
+				continue 
+			if rel in person_id_list and "ci" not in visited_candidates_n and  len(set(person_id_list).intersection(set(visited_candidates_n))) < len(visited_candidates_n):
 				continue 
 			if rel == "it3" and "pi" not in visited_candidates_n:
 				continue
@@ -364,7 +367,6 @@ for query_file in query_list:
 			max_frequency_ml = max_frequency_ml * MF_dict["ml.linked_movie_id"]
 		max_frequency = best_frequency
 		current_size = best_cost
-	#################### End Greedy Enumeration  ####################
 
 
 	######## Resemble Explict SQL According to Plans ################
@@ -507,10 +509,15 @@ for query_file in query_list:
 			join_fin += stem1+tar+".movie_id = " +stem2+last_fk_fk+".linked_movie_id"
 		elif tar == "mc2" and "ml.movie_id = mc1.movie_id" in data and "ml" == visited_sub_join[0]:
 			join_fin += stem1+tar+".movie_id = ml.linked_movie_id"
+		elif tar == "ml" and "ci.movie_id = ml.linked_movie_id" in data and last_fk_fk == "ci": 
+			join_fin += stem1+"ml.linked_movie_id = "+stem2+"ci.movie_id"
 		elif tar == "mc1" and "ml.linked_movie_id = mc2.movie_id" in data and "ml" in visited_sub_join[0]:
 			join_fin += stem1+tar+".movie_id = ml.movie_id"
 		elif tar == "mi_idx1" and "ml.movie_id = mi_idx1.movie_id" in data and "ml" in visited_sub_join[0]:
 			join_fin += stem1+tar+".movie_id = ml.movie_id"
+		elif tar == "ci" and len(set(person_id_list).intersection(set(visited_sub_join))):
+			pk_fk_tar = visited_sub_join[-1]
+			join_fin += stem1+tar+".person_id = " +stem2+pk_fk_tar +".person_id"
 		else:
 			join_fin += stem1+tar+".movie_id = " +stem2+last_fk_fk+".movie_id"
 		if first_on and not is_subquery[-1]:
