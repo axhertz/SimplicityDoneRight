@@ -257,7 +257,7 @@ for query_file in query_list:
 			if cur_card < min_card:
 				min_card = cur_card
 				t_rel = key
-				rel_dict[t_rel] = min_card
+		rel_dict[t_rel] = min_card
 
 	if "ci" in sub_join_rel_dict.keys():
 		fk_fk_target += list(set(person_id_list).intersection(set(sub_join_rel_dict["ci"])))
