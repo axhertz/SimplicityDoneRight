@@ -13,8 +13,8 @@ join keyword AS k on (k.keyword = 'computer-animation' AND k.id = mk.keyword_id)
 on(t_mk.movie_id = t_mc.movie_id)
 join
  (select person_id, movie_id from cast_info AS ci 
-join char_name AS chn on (chn.name = 'Queen' AND chn.id = ci.person_role_id and ci.note IN ('(voice)', '(voice) (uncredited)', '(voice: English version)'))
-join role_type AS rt on (rt.role ='actress' AND rt.id = ci.role_id)
+join role_type AS rt on (rt.role ='actress' AND rt.id = ci.role_id and ci.note IN ('(voice)', '(voice) (uncredited)', '(voice: English version)'))
+join char_name AS chn on (chn.name = 'Queen' AND chn.id = ci.person_role_id)
 join name AS n on (n.gender ='f' AND n.name LIKE '%An%' AND n.id = ci.person_id)) as t_ci 
 on(t_ci.movie_id = t_mk.movie_id)
 JOIN aka_name AS an  
