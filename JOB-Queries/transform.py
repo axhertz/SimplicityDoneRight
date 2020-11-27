@@ -80,6 +80,7 @@ query_list = [q.split("/")[-1] for q in query_list]
 
 
 for query_file in query_list:
+	print("rewriting", query_file)
 	with open(impl_dir+query_file, "r") as file:
 		data = file.read()
 
