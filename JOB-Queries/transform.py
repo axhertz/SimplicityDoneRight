@@ -211,6 +211,7 @@ for query_file in query_list:
 
 		for rel in sub_join_rel_dict[key]:
 			if rel in fk_fk_target: continue
+			if rel in ['t', 'n', 'n1']: continue
 			if rel in ["it", "it1", "it2", "it3"] and key in ["miidx", "mi_idx", "mi_idx1","mi_idx2","mi"]:
 				intermediate = min( min(intermediate/MF_dict[key+".info_type_id"], rel_dict[rel]) * MF_dict[key+".info_type_id"], intermediate)
 			elif rel in["cn","cn1","cn2"] and key in ["mc","mc1","mc2"]:
@@ -221,8 +222,6 @@ for query_file in query_list:
 				intermediate = min( min(intermediate/MF_dict["ml.link_type_id"], rel_dict[rel]) * MF_dict["ml.link_type_id"], intermediate)
 			elif rel == "t2" and key == "ml":
 				intermediate = min( min(intermediate/MF_dict["ml.linked_movie_id"], rel_dict[rel]) * MF_dict["ml.linked_movie_id"], intermediate)
-			elif rel in ["n","n1"] and key == "ci":
-				intermediate = min( min(intermediate/MF_dict["ci.person_id"], rel_dict[rel]) * MF_dict["ci.person_id"], intermediate)
 			elif rel in ["k"] and key == "mk":
 				intermediate = min( min(intermediate/MF_dict["mk.keyword_id"], rel_dict[rel]) * MF_dict["mk.keyword_id"], intermediate)
 			elif rel in ["rt"] and key == "ci":
@@ -259,16 +258,50 @@ for query_file in query_list:
 		if not use_ci:
 			rel_dict[t_rel] = min_card
 
+	# decide n, n1
+	n_tar = None
+	min_n_rel = None
+	if "ci" in rel_dict.keys():
+		min_n_card = 10**100
+	
+		if "n" in sub_join_rel_dict["ci"]:
+			n_tar = "n"
+		if "n1" in sub_join_rel_dict["ci"]:
+			n_tar = "n1"
+		if n_tar:
+			for pk_id_tar in person_id_list:
+				if pk_id_tar in sub_join_rel_dict.keys():
+					cur_card = min(rel_dict[pk_id_tar], MF_dict[pk_id_tar] * rel_dict[n_tar])
+					if cur_card < min_n_card:
+						min_n_rel = pk_id_tar
+						min_n_card = cur_card
+		if n_tar:
+			if  min_n_rel == "ci" or not min_n_rel:
+				rel_dict["ci"] = min( min(rel_dict["ci"]/MF_dict["ci.person_id"], rel_dict[n_tar]) * MF_dict["ci.person_id"], rel_dict["ci"])
+			elif min_n_rel is not None and min_n_rel != "ci":
+				rel_dict[min_n_rel] = min( min(rel_dict[min_n_rel]/MF_dict[min_n_rel], rel_dict[n_tar]) * MF_dict[min_n_rel], rel_dict[min_n_rel])
+				sub_join_rel_dict[min_n_rel].append(n_tar)
+				sub_join_rel_dict["ci"] = list(set(sub_join_rel_dict["ci"])- set([n_tar]))
+
 	if "ci" in sub_join_rel_dict.keys():
 		fk_fk_target += list(set(person_id_list).intersection(set(sub_join_rel_dict["ci"])))
 		sub_join_rel_dict["ci"] = list(set(sub_join_rel_dict["ci"])- set(person_id_list))
 
-
-	if "it3.id = pi.info_type_id"  in data:
-		sub_join_rel_dict["pi"] = ["it3", "pi"]
+	if "it3.id = pi.info_type_id" in data:
+		if min_n_rel == "pi" and rel_dict["it3"]< rel_dict[n_tar]:
+			sub_join_rel_dict["pi"] = [n_tar] + ["it3", "pi"]
+		elif min_n_rel == "pi":
+			sub_join_rel_dict["pi"] =  ["it3"] + [n_tar] + ["pi"]
+		else:	
+			sub_join_rel_dict["pi"] = ["it3", "pi"]
 		rel_dict["pi"] = min(rel_dict["pi"]/MF_dict["pi.info_type_id"], rel_dict["it3"])*MF_dict["pi.info_type_id"]
 	if "it.id = pi.info_type_id" in data:
-		sub_join_rel_dict["pi"] = ["it", "pi"]
+		if min_n_rel == "pi" and rel_dict["it"]< rel_dict[n_tar]:
+			sub_join_rel_dict["pi"] = [n_tar] + ["it", "pi"]
+		elif min_n_rel == "pi":
+			sub_join_rel_dict["pi"] =  ["it"] + [n_tar] + ["pi"]
+		else:	
+			sub_join_rel_dict["pi"] = ["it", "pi"]
 		rel_dict["pi"] = min(rel_dict["pi"]/MF_dict["pi.info_type_id"], rel_dict["it"])*MF_dict["pi.info_type_id"]
 	min_card = sys.maxsize
 	best_rel = None

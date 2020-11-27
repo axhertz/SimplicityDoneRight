@@ -1,9 +1,9 @@
 select count(*) from 
 aka_name AS an 
+join name AS n on (n.gender ='f' AND n.name LIKE '%An%' AND n.id = an.person_id)
 JOIN cast_info AS ci  
 on(ci.person_id = an.person_id and ci.note IN ('(voice)', '(voice: Japanese version)', '(voice) (uncredited)', '(voice: English version)'))
 join role_type AS rt on (rt.role ='actress' AND rt.id = ci.role_id)
-join name AS n on (n.gender ='f' AND n.name LIKE '%An%' AND n.id = ci.person_id)
 join title AS t on (t.production_year > 2000 AND t.id = ci.movie_id)
 join char_name AS chn on (chn.id = ci.person_role_id)
 JOIN movie_companies AS mc  

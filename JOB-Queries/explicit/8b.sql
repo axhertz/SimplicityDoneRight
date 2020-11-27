@@ -5,6 +5,6 @@ join title AS t on (t.production_year BETWEEN 2006 AND 2007 AND (t.title LIKE 'O
 JOIN cast_info AS ci  
 on(ci.movie_id = mc.movie_id and ci.note ='(voice: English version)')
 join role_type AS rt on (rt.role ='actress' AND ci.role_id = rt.id)
-join name AS n on (n.name LIKE '%Yo%' AND n.name NOT LIKE '%Yu%' AND n.id = ci.person_id)
 JOIN aka_name AS an  
-on(an.person_id = ci.person_id);
+on(an.person_id = ci.person_id)
+join name AS n on (n.name LIKE '%Yo%' AND n.name NOT LIKE '%Yu%' AND an.person_id = n.id);

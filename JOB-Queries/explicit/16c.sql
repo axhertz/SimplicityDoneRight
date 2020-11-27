@@ -7,6 +7,6 @@ on(mc.movie_id = mk.movie_id)
 join company_name AS cn on (cn.country_code ='[us]' AND mc.company_id = cn.id)
 JOIN cast_info AS ci  
 on(ci.movie_id = mc.movie_id)
-join name AS n on (n.id = ci.person_id)
 JOIN aka_name AS an  
-on(an.person_id = ci.person_id);
+on(an.person_id = ci.person_id)
+join name AS n on (an.person_id = n.id);

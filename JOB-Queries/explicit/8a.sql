@@ -5,6 +5,6 @@ join title AS t on (t.id = mc.movie_id)
 JOIN cast_info AS ci  
 on(ci.movie_id = mc.movie_id and ci.note ='(voice: English version)')
 join role_type AS rt on (rt.role ='actress' AND ci.role_id = rt.id)
-join name AS n1 on (n1.name LIKE '%Yo%' AND n1.name NOT LIKE '%Yu%' AND n1.id = ci.person_id)
 JOIN aka_name AS an1  
-on(an1.person_id = ci.person_id);
+on(an1.person_id = ci.person_id)
+join name AS n1 on (n1.name LIKE '%Yo%' AND n1.name NOT LIKE '%Yu%' AND an1.person_id = n1.id);

@@ -1,7 +1,7 @@
 select count(*) from 
 complete_cast AS cc 
-join comp_cast_type AS cct1 on (cct1.kind = 'cast' AND cct1.id = cc.subject_id)
 join comp_cast_type AS cct2 on (cct2.kind = 'complete' AND cct2.id = cc.status_id)
+join comp_cast_type AS cct1 on (cct1.kind = 'cast' AND cct1.id = cc.subject_id)
 join title AS t on (t.production_year > 2005 AND t.id = cc.movie_id)
 join kind_type AS kt on (kt.kind IN ('movie', 'episode') AND kt.id = t.kind_id)
 join

@@ -9,7 +9,6 @@ join
  (select movie_id from movie_keyword AS mk 
 join keyword AS k on (k.keyword IN ('murder', 'blood', 'gore', 'death', 'female-nudity') AND k.id = mk.keyword_id)) as t_mk 
 on(t_mk.movie_id = mi.movie_id)
-join
- (select person_id, movie_id from cast_info AS ci 
-join name AS n on (n.gender = 'm' AND n.id = ci.person_id and ci.note IN ('(writer)', '(head writer)', '(written by)', '(story)', '(story editor)'))) as t_ci 
-on(t_ci.movie_id = t_mk.movie_id);
+JOIN cast_info AS ci  
+on(ci.movie_id = t_mk.movie_id and ci.note IN ('(writer)', '(head writer)', '(written by)', '(story)', '(story editor)'))
+join name AS n on (n.gender = 'm' AND n.id = ci.person_id);
