@@ -2,7 +2,7 @@
 
 The folder "implicit" contains all JOB queries with implict where clauses.
 
-The folder "explict" contains the trainsformed JOB queries according to the scheme detailed in the paper. 
+The folder "explict" contains the trainsformed JOB queries according to the scheme detailed in the [paper](http://cidrdb.org/cidr2021/papers/cidr2021_paper01.pdf). 
 
 All queries use COUNT(*) as final aggregate to verify correctness of the explicit queries.
 
