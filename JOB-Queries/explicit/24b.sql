@@ -13,7 +13,6 @@ join char_name AS chn on (chn.id = ci.person_role_id)
 JOIN aka_name AS an  
 on(an.person_id = ci.person_id)
 join name AS n on (n.gender ='f' AND n.name LIKE '%An%' AND n.id = an.person_id)
-join
- (select movie_id from movie_info AS mi 
-join info_type AS it on (it.info = 'release dates' AND it.id = mi.info_type_id and mi.info IS NOT NULL AND (mi.info LIKE 'Japan:%201%' OR mi.info LIKE 'USA:%201%'))) as t_mi 
-on(t_mi.movie_id = ci.movie_id);
+JOIN movie_info AS mi  
+on(mi.movie_id = ci.movie_id and mi.info IS NOT NULL AND (mi.info LIKE 'Japan:%201%' OR mi.info LIKE 'USA:%201%'))
+join info_type AS it on (it.info = 'release dates' AND it.id = mi.info_type_id);

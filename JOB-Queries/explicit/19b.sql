@@ -9,6 +9,7 @@ JOIN cast_info AS ci
 on(ci.movie_id = mc.movie_id and ci.note = '(voice)')
 join role_type AS rt on (rt.role ='actress' AND rt.id = ci.role_id)
 join char_name AS chn on (chn.id = ci.person_role_id)
-JOIN aka_name AS an  
-on(an.person_id = ci.person_id)
-join name AS n on (n.gender ='f' AND n.name LIKE '%Angel%' AND n.id = an.person_id);
+join
+ (select person_id from aka_name AS an 
+join name AS n on (n.gender ='f' AND n.name LIKE '%Angel%' AND n.id = an.person_id)) as t_an 
+on(t_an.person_id = ci.person_id);
