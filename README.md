@@ -30,7 +30,7 @@ To build new conditional samples:
 
 
 
-To compare the implicit to the explicit JOB Queries you may need to [install Postgres](https://www.postgresql.org/download/linux/ubuntu/)  first and [load the IMDB data](https://github.com/gregrahn/join-order-benchmark).
+To compare the implicit to the explicit JOB Queries you need to [install Postgres](https://www.postgresql.org/download/linux/ubuntu/) and [load the (frozen) IMDB data](https://github.com/gregrahn/join-order-benchmark).
 
 Please use the following sql hints if running the explicit queries on Postgres:
 
