@@ -113,6 +113,7 @@ for query_file in query_list:
 				test_rels.append(sub_string.split(".")[0]+".id")	
 		if len(set(test_rels).intersection(set(pks)))==1:
 			rel = w_r.lstrip().rstrip().split(".")
+			rel[0] = rel[0].replace("(","").replace(")","")
 			if not rel[0] in dict_rel_filter.keys():
 				dict_rel_filter[rel[0]] = [w_r.lstrip().rstrip()]
 			else:
@@ -567,7 +568,8 @@ for query_file in query_list:
 	
 	join_stmt = join_stmt.replace("on ()", "")
 	join_stmt = "select count(*) from \n" +join_stmt
-	join_stmt = join_stmt.replace("t_an.", "an.")
+	if not "(select person_id from aka_name" in join_stmt:
+		join_stmt = join_stmt.replace("t_an.", "an.")
 	join_stmt = join_stmt.replace(";", "")
 
 
