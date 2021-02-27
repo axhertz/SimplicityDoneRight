@@ -1,6 +1,6 @@
 # SimplicityDoneRight
 
-This is the code base of the evaluation shown in the work "Simplicity Done Right for Join Ordering".
+This is the code base of the evaluation shown in the work [Simplicity Done Right for Join Ordering](http://cidrdb.org/cidr2021/papers/cidr2021_paper01.pdf).
 
 ## Modules 
 
