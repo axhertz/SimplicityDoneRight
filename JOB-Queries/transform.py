@@ -241,24 +241,6 @@ for query_file in query_list:
 				sub_join_rel_dict[rel] = [rel] 
 		rel_dict[key] = math.ceil(intermediate)
 
-	# apply pk-fk join with title only to smallest n:m candidate
-	use_ci = False
-	if "t" in rel_dict.keys():
-		t_rel = None
-		min_card = 10**100
-		for key in fk_fk_target:
-			if not "t" in sub_join_rel_dict[key]: continue
-			cur_card = min(rel_dict[key], MF_dict[key] * rel_dict["t"])
-			if cur_card < min_card:
-				min_card = cur_card
-				t_rel = key
-		for pk_id_tar in person_id_list:
-			if pk_id_tar in sub_join_rel_dict.keys():
-				if rel_dict[pk_id_tar] <= min_card:
-					use_ci = True
-					break
-		if not use_ci:
-			rel_dict[t_rel] = min_card
 
 	# decide n, n1
 	n_tar = None
@@ -284,6 +266,26 @@ for query_file in query_list:
 				rel_dict[min_n_rel] = min( min(rel_dict[min_n_rel]/MF_dict[min_n_rel], rel_dict[n_tar]) * MF_dict[min_n_rel], rel_dict[min_n_rel])
 				sub_join_rel_dict[min_n_rel].append(n_tar)
 				sub_join_rel_dict["ci"] = list(set(sub_join_rel_dict["ci"])- set([n_tar]))
+
+	# apply pk-fk join with title only to smallest n:m candidate
+	use_ci = False
+	if "t" in rel_dict.keys():
+		t_rel = None
+		min_card = 10**100
+		for key in fk_fk_target:
+			if not "t" in sub_join_rel_dict[key]: continue
+			cur_card = min(rel_dict[key], MF_dict[key] * rel_dict["t"])
+			if cur_card < min_card:
+				min_card = cur_card
+				t_rel = key
+		for pk_id_tar in person_id_list:
+			if pk_id_tar in sub_join_rel_dict.keys():
+				if rel_dict[pk_id_tar] <= min_card:
+					use_ci = True
+					break
+		if not use_ci:
+			rel_dict[t_rel] = min_card
+
 
 	if "ci" in sub_join_rel_dict.keys():
 		fk_fk_target += list(set(person_id_list).intersection(set(sub_join_rel_dict["ci"])))
