@@ -351,13 +351,8 @@ for query_file in query_list:
 	visited_candidates = np.zeros(len(fk_fk_target))
 	visited_candidates_n = []
 	greedy_plan = []
-
 	max_frequency = 1
-
-	# ml may join over linked_movie_id or movie_id
-	max_frequency_ml = MF_dict["ml.linked_movie_id"]
 	current_size = 1
-
 	unroll_rel =[]
 
 	# Greedy join enumeration according to n:m candidates
@@ -382,12 +377,8 @@ for query_file in query_list:
 			if current_cost <= best_cost:
 				best_candidate_position = position
 				best_cost = current_cost
-				if is_ml:
-					best_frequency = max_frequency_ml*MF_dict["ml.linked_movie_id"]
-				else:
-					best_frequency = MF_dict[rel]*max_frequency
+				best_frequency = MF_dict[rel]*max_frequency
 				best_rel = rel
-				best_is_ml = is_ml
 
 		# decide whether to employ sub-query on n:m join candidate
 		greedy_plan.append(fk_fk_target[best_candidate_position])
@@ -400,8 +391,6 @@ for query_file in query_list:
 	
 		visited_candidates[best_candidate_position] = True
 		visited_candidates_n.append(all_candidates[best_candidate_position])
-		if best_is_ml:
-			max_frequency_ml = max_frequency_ml * MF_dict["ml.linked_movie_id"]
 		max_frequency = best_frequency
 		current_size = best_cost
 
@@ -552,6 +541,8 @@ for query_file in query_list:
 			join_fin += stem1+tar+".movie_id = ml.movie_id"
 		elif tar == "mi_idx1" and "ml.movie_id = mi_idx1.movie_id" in data and "ml" in visited_sub_join[0]:
 			join_fin += stem1+tar+".movie_id = ml.movie_id"
+		elif tar == "mi_idx2" and "ml.linked_movie_id = mi_idx2.movie_id" in data and "ml" in visited_sub_join[0]:
+			join_fin += stem1+tar+".movie_id = ml.linked_movie_id"
 		elif tar == "ci" and len(set(person_id_list).intersection(set(visited_sub_join))):
 			pk_fk_tar = visited_sub_join[-1]
 			join_fin += stem1+tar+".person_id = " +stem2+pk_fk_tar +".person_id"

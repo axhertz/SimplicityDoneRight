@@ -12,7 +12,7 @@ on(t_mi_idx1.movie_id = ml.movie_id)
 join
  (select movie_id from movie_info_idx AS mi_idx2 
 join info_type AS it2 on (it2.info = 'rating' AND it2.id = mi_idx2.info_type_id and mi_idx2.info < '3.5')) as t_mi_idx2 
-on(t_mi_idx2.movie_id = t_mi_idx1.movie_id)
+on(t_mi_idx2.movie_id = ml.linked_movie_id)
 JOIN movie_companies AS mc2  
 on(mc2.movie_id = ml.linked_movie_id)
 join company_name AS cn2 on (cn2.id = mc2.company_id)
