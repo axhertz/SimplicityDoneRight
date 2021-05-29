@@ -2,6 +2,8 @@
 
 This is the code base of the evaluation shown in the work [Simplicity Done Right for Join Ordering](http://cidrdb.org/cidr2021/papers/cidr2021_paper01.pdf).
 
+A short presentation is available at [CIDR DB](https://www.youtube.com/watch?v=PDph36kjPxI).
+
 ## Modules 
 
 1. **Focused Sampling:** The code mimics an in-memory column store and exploits specific access patterns to boost sampling speed. 
