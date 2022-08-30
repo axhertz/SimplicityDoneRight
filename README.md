@@ -40,3 +40,8 @@ For running the explicit queries on Postgres, please use the following SQL hints
 
 `set enable_nestloop to false;`
 
+
+## Additional Notes
+
+The submodule **Simplicity++** (WIP) is a workload-independent implementation that extends the original concept, e.g., by taking multiple freuqency statics into account.    
+
