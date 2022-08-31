@@ -45,3 +45,4 @@ For running the explicit queries on Postgres, please use the following SQL hints
 
 The submodule **Simplicity++** (WIP) is a workload-independent implementation that extends the original concept, e.g., by taking multiple freuqency statics into account.    
 
+If you want to take a look at the upstream development of Simplicity++, check out the [Github Repo]( https://github.com/rbergm/diploma-thesis).
