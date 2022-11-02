@@ -32,7 +32,7 @@ To build new conditional samples:
 
 
 
-To compare the implicit to the explicit JOB Queries you need to [install Postgres](https://www.postgresql.org/download/linux/ubuntu/) and [load the (frozen) IMDB data](https://github.com/gregrahn/join-order-benchmark).
+To compare the implicit to the explicit JOB Queries you need to [install Postgres](https://www.postgresql.org/download/linux/ubuntu/) and load the (frozen) [official IMDB data](https://github.com/gregrahn/join-order-benchmark) or [[CSV files](https://cloudstore.zih.tu-dresden.de/index.php/s/eqWWK53CgkxMxfA)].
  
 For running the explicit queries on Postgres, please use the following SQL hints to **prevent join reordering** and to **restrict** the physical join operator selection **to hash joins** (merge joins for sorted attributes): 
 
